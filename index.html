@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pkgtools by pkgtools</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pkgtools</h1>
+        <p>FreeBSD ports and packages management app</p>
+        <p class="view"><a href="https://github.com/pkgtools/pkgtools">View the Project on GitHub <small>pkgtools/pkgtools</small></a></p>
+        <ul>
+          <li><a href="https://github.com/pkgtools/pkgtools/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pkgtools/pkgtools/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pkgtools/pkgtools">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>PKGTOOLS</h1>
+
+<h2>Installation.</h2>
+
+<p>You need to install the following ports to use these pkgtools:</p>
+
+<ul>
+<li>
+<code>lang/ruby18</code> -- Ruby 1.8 interpreter, or</li>
+<li>
+<code>lang/ruby19</code> -- Ruby 1.9 interpreter.</li>
+</ul><p>If you want to be able to run tests, you will also need to install
+devel/ruby-testunit.</p>
+
+<h2>Tools included.</h2>
+
+<h3>portupgrade</h3>
+
+<p>Portupgrade is a tool to upgrade installed packages via ports or
+packages.  It allows you to upgrade installed packages without having
+to reinstall dependent/required packages by directly adjusting the
+package database located under /var/db/pkg, while it can also upgrade
+packages recursively.</p>
+
+<p>Example: <code>portupgrade gtk</code>.</p>
+
+<h3>portinstall</h3>
+
+<p>Portinstall is equivalent to `portupgrade -N', which means it tries to
+install the latest version when a specified package is not installed.
+Prior to the installation of a new package, all the required packages
+are upgraded.</p>
+
+<p>Example: <code>portinstall shells/zsh</code>.</p>
+
+<h3>portversion</h3>
+
+<p>Portversion is a tool to compare the versions of install packages with
+those in the ports tree.  It is a replacement for pkg_version(1)
+cooperative with portupgrade, that is, the command output is optimized
+for portupgrade.  Besides, it runs much faster than pkg_version(1)
+because it utilizes the prebuilt ports database. (See portsdb)</p>
+
+<p>Example: <code>portversion</code>.</p>
+
+<h3>portsdb</h3>
+
+<p>Portsdb generates the ports database named INDEX.db from the ports
+INDEX file.  It is commonly used among the tool suite and
+automatically updated on demand when it gets older than the ports
+INDEX file.</p>
+
+<p>Example: <code>portsdb -Uu</code>.</p>
+
+<h3>ports_glob</h3>
+
+<p>Ports_glob expands ports globs.  It understands wildcards and is
+capable of listing the required, dependent or master ports of a given
+port.  It would be handy to use from within a shell script.</p>
+
+<p>Example: <code>ports_glob '*/*firefox*'</code>.</p>
+
+<h3>pkg_fetch</h3>
+
+<p>Pkg_fetch is a tool to download binary packages from remote sites.  It
+can optionally download packages recursively through dependencies.</p>
+
+<p>Example: <code>pkg_fetch -r sawfish</code>.</p>
+
+<h3>pkg_glob</h3>
+
+<p>Pkg_glob expands package globs.  It understands wildcards and is
+capable of listing the required or dependent packages of a package.
+It would be handy to use from within a shell script.</p>
+
+<p>Example: <code>pkg_glob -R gnome</code>.</p>
+
+<h3>pkg_deinstall</h3>
+
+<p>Pkg_deinstall is a wrapper/replacement of pkg_delete(1), which
+understands wildcards and is capable of recursing through
+dependencies.  It has an option to preserve shared libraries.</p>
+
+<p>Example: <code>pkg_deinstall -r xmms</code>.</p>
+
+<h3>pkgdb</h3>
+
+<p>Pkgdb creates and updates the packages database which is commonly used
+among the tool suite.  It keeps a hash that maps an installed file to
+a package name, a hash that maps a package to an origin, and a list of
+installed packages.  The database file is automatically updated on
+demand when any package is installed or deinstalled after the database
+was last updated.</p>
+
+<p>Example: <code>pkgdb -u</code>.</p>
+
+<p>Pkgdb also works as an interactive tool for fixing the package
+registry database when -F is specified.  It helps you resolve stale
+dependencies, unlink cyclic dependencies, complete stale or missing
+origins, and remove duplicates.  You have to run this periodically so
+that portupgrade and other tools can work effectively and unfailingly.</p>
+
+<p>Example: <code>pkgdb -Fv</code>.</p>
+
+<h3>pkg_which</h3>
+
+<p>Pkg_which inquires of the packages database which package each given
+file came from.  If you do not have permission to update the database
+although it is outdated, it delegates tasks to pkg_info(1).</p>
+
+<p>Example: <code>pkg_which patgen</code>.</p>
+
+<h3>portsclean</h3>
+
+<p>Portsclean is a tool to clean ports working directories, no longer
+referenced distfiles, outdated package files, and/or obsolete and
+orphan shared libraries.</p>
+
+<p>Example: <code>portsclean -Di</code>.</p>
+
+<h3>portcvsweb</h3>
+
+<p>Portcvsweb is a tool to instantly browse a history of a given file via
+CVSweb.  It may be more useful than you expect.  Try it with src, www,
+doc, NetBSD pkgsrc, and OpenBSD ports files. :)</p>
+
+<p>Example: <code>portcvsweb sysutils/portupgrade</code>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/pkgtools">pkgtools</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
